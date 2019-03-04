@@ -1,4 +1,3 @@
-
 function makeUsersArray() {
   return [
     {
@@ -7,7 +6,7 @@ function makeUsersArray() {
       full_name: 'Test user 1',
       nickname: 'TU1',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615',
+      date_created: '2029-01-22T16:28:32.615'
     },
     {
       id: 2,
@@ -15,7 +14,7 @@ function makeUsersArray() {
       full_name: 'Test user 2',
       nickname: 'TU2',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615',
+      date_created: '2029-01-22T16:28:32.615'
     },
     {
       id: 3,
@@ -23,7 +22,7 @@ function makeUsersArray() {
       full_name: 'Test user 3',
       nickname: 'TU3',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615',
+      date_created: '2029-01-22T16:28:32.615'
     },
     {
       id: 4,
@@ -31,9 +30,9 @@ function makeUsersArray() {
       full_name: 'Test user 4',
       nickname: 'TU4',
       password: 'password',
-      date_created: '2029-01-22T16:28:32.615',
-    },
-  ]
+      date_created: '2029-01-22T16:28:32.615'
+    }
+  ];
 }
 
 function makeArticlesArray(users) {
@@ -44,7 +43,8 @@ function makeArticlesArray(users) {
       style: 'How-to',
       author_id: users[0].id,
       date_created: '2029-01-22T16:28:32.615Z',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?'
     },
     {
       id: 2,
@@ -52,7 +52,8 @@ function makeArticlesArray(users) {
       style: 'Interview',
       author_id: users[1].id,
       date_created: '2029-01-22T16:28:32.615Z',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?'
     },
     {
       id: 3,
@@ -60,7 +61,8 @@ function makeArticlesArray(users) {
       style: 'News',
       author_id: users[2].id,
       date_created: '2029-01-22T16:28:32.615Z',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?'
     },
     {
       id: 4,
@@ -68,9 +70,10 @@ function makeArticlesArray(users) {
       style: 'Listicle',
       author_id: users[3].id,
       date_created: '2029-01-22T16:28:32.615Z',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?',
-    },
-  ]
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui inventore corrupti iusto aliquid debitis unde non.Adipisci, pariatur.Molestiae, libero esse hic adipisci autem neque ?'
+    }
+  ];
 }
 
 function makeCommentsArray(users, articles) {
@@ -80,60 +83,59 @@ function makeCommentsArray(users, articles) {
       text: 'First test comment!',
       article_id: articles[0].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 2,
       text: 'Second test comment!',
       article_id: articles[0].id,
       user_id: users[1].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 3,
       text: 'Third test comment!',
       article_id: articles[0].id,
       user_id: users[2].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 4,
       text: 'Fourth test comment!',
       article_id: articles[0].id,
       user_id: users[3].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 5,
       text: 'Fifth test comment!',
       article_id: articles[articles.length - 1].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 6,
       text: 'Sixth test comment!',
       article_id: articles[articles.length - 1].id,
       user_id: users[2].id,
-      date_created: '2029-01-22T16:28:32.615Z',
+      date_created: '2029-01-22T16:28:32.615Z'
     },
     {
       id: 7,
       text: 'Seventh test comment!',
       article_id: articles[3].id,
       user_id: users[0].id,
-      date_created: '2029-01-22T16:28:32.615Z',
-    },
+      date_created: '2029-01-22T16:28:32.615Z'
+    }
   ];
 }
 
-function makeExpectedArticle(users, article, comments=[]) {
-  const author = users
-    .find(user => user.id === article.author_id)
+function makeExpectedArticle(users, article, comments = []) {
+  const author = users.find(user => user.id === article.author_id);
 
-  const number_of_comments = comments
-    .filter(comment => comment.article_id === article.id)
-    .length
+  const number_of_comments = comments.filter(
+    comment => comment.article_id === article.id
+  ).length;
 
   return {
     id: article.id,
@@ -147,17 +149,18 @@ function makeExpectedArticle(users, article, comments=[]) {
       user_name: author.user_name,
       full_name: author.full_name,
       nickname: author.nickname,
-      date_created: author.date_created,
-    },
-  }
+      date_created: author.date_created
+    }
+  };
 }
 
 function makeExpectedArticleComments(users, articleId, comments) {
-  const expectedComments = comments
-    .filter(comment => comment.article_id === articleId)
+  const expectedComments = comments.filter(
+    comment => comment.article_id === articleId
+  );
 
   return expectedComments.map(comment => {
-    const commentUser = users.find(user => user.id === comment.user_id)
+    const commentUser = users.find(user => user.id === comment.user_id);
     return {
       id: comment.id,
       text: comment.text,
@@ -168,10 +171,10 @@ function makeExpectedArticleComments(users, articleId, comments) {
         full_name: commentUser.full_name,
         nickname: commentUser.nickname,
         date_created: commentUser.date_created,
-        date_modified: null,
+        date_modified: null
       }
-    }
-  })
+    };
+  });
 }
 
 function makeMaliciousArticle(user) {
@@ -181,24 +184,25 @@ function makeMaliciousArticle(user) {
     date_created: new Date().toISOString(),
     title: 'Naughty naughty very naughty <script>alert("xss");</script>',
     author_id: user.id,
-    content: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
-  }
+    content: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`
+  };
   const expectedArticle = {
     ...makeExpectedArticle([user], maliciousArticle),
-    title: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
-    content: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
-  }
+    title:
+      'Naughty naughty very naughty &lt;script&gt;alert("xss");&lt;/script&gt;',
+    content: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`
+  };
   return {
     maliciousArticle,
-    expectedArticle,
-  }
+    expectedArticle
+  };
 }
 
 function makeArticlesFixtures() {
-  const testUsers = makeUsersArray()
-  const testArticles = makeArticlesArray(testUsers)
-  const testComments = makeCommentsArray(testUsers, testArticles)
-  return { testUsers, testArticles, testComments }
+  const testUsers = makeUsersArray();
+  const testArticles = makeArticlesArray(testUsers);
+  const testComments = makeCommentsArray(testUsers, testArticles);
+  return { testUsers, testArticles, testComments };
 }
 
 function cleanTables(db) {
@@ -208,32 +212,31 @@ function cleanTables(db) {
       blogful_users,
       blogful_comments
       RESTART IDENTITY CASCADE`
-  )
+  );
 }
 
-function seedArticlesTables(db, users, articles, comments=[]) {
+function seedArticlesTables(db, users, articles, comments = []) {
   return db
     .into('blogful_users')
     .insert(users)
-    .then(() =>
-      db
-        .into('blogful_articles')
-        .insert(articles)
-    )
-    .then(() =>
-      comments.length && db.into('blogful_comments').insert(comments)
-    )
+    .then(() => db.into('blogful_articles').insert(articles))
+    .then(
+      () => comments.length && db.into('blogful_comments').insert(comments)
+    );
 }
 
 function seedMaliciousArticle(db, user, article) {
   return db
     .into('blogful_users')
     .insert([user])
-    .then(() =>
-      db
-        .into('blogful_articles')
-        .insert([article])
-    )
+    .then(() => db.into('blogful_articles').insert([article]));
+}
+
+function makeAuthHeader(user) {
+  const token = Buffer.from(`${user.user_name}:${user.password}`).toString(
+    'base64'
+  );
+  return `Bearer ${token}`;
 }
 
 module.exports = {
@@ -248,4 +251,5 @@ module.exports = {
   cleanTables,
   seedArticlesTables,
   seedMaliciousArticle,
-}
+  makeAuthHeader
+};
