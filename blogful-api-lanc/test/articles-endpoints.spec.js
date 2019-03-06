@@ -6,7 +6,7 @@ const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 
-describe('Articles Endpoints', function() {
+describe.only('Articles Endpoints', function() {
   let db;
 
   const {
@@ -58,7 +58,7 @@ describe('Articles Endpoints', function() {
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userNoCreds))
-            .expect(401, { error: 'Unauthorized request' });
+            .expect(401, { error: 'Unauthorized Request' });
         });
 
         it('responds 401 \'Unauthorized request\' when invalid user', () => {
@@ -69,7 +69,7 @@ describe('Articles Endpoints', function() {
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userInvalidCreds))
-            .expect(401, { error: 'Unauthorized request' });
+            .expect(401, { error: 'Unauthorized Request' });
         });
 
         it('responds 401 \'Unauthorized request\' when invalid password', () => {
@@ -80,7 +80,7 @@ describe('Articles Endpoints', function() {
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userInvalidPass))
-            .expect(401, { error: 'Unauthorized request' });
+            .expect(401, { error: 'Unauthorized Request' });
         });
       });
     });

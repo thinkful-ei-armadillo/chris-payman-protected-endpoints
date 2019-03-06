@@ -1,8 +1,10 @@
+'use strict'; 
+
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 
-describe('Comments Endpoints', function() {
+describe.only ('Comments Endpoints', function() {
   let db;
 
   const { testArticles, testUsers } = helpers.makeArticlesFixtures();
