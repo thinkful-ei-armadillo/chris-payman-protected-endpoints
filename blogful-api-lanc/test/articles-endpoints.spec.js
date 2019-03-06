@@ -1,3 +1,7 @@
+/* global supertest */
+
+'use strict'; 
+
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
@@ -25,7 +29,7 @@ describe('Articles Endpoints', function() {
 
   afterEach('cleanup', () => helpers.cleanTables(db));
 
-  describe(`Protected endpoints`, () => {
+  describe('Protected endpoints', () => {
     beforeEach('insert articles', () =>
       helpers.seedArticlesTables(db, testUsers, testArticles, testComments)
     );
@@ -43,21 +47,21 @@ describe('Articles Endpoints', function() {
 
     protectedEndpoints.forEach(endpoint => {
       describe(endpoint.name, () => {
-        it(`responds 401 'Missing bearer token' when no bearer token`, () => {
+        it('responds 401 \'Missing bearer token\' when no bearer token', () => {
           return supertest(app)
             .get(endpoint.path)
-            .expect(401, { error: `Missing bearer token` });
+            .expect(401, { error: 'Missing bearer token' });
         });
 
-        it(`responds 401 'Unauthorized request' when no credentials in token`, () => {
+        it('responds 401 \'Unauthorized request\' when no credentials in token', () => {
           const userNoCreds = { user_name: '', password: '' };
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userNoCreds))
-            .expect(401, { error: `Unauthorized request` });
+            .expect(401, { error: 'Unauthorized request' });
         });
 
-        it(`responds 401 'Unauthorized request' when invalid user`, () => {
+        it('responds 401 \'Unauthorized request\' when invalid user', () => {
           const userInvalidCreds = {
             user_name: 'user-not',
             password: 'existy'
@@ -65,10 +69,10 @@ describe('Articles Endpoints', function() {
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userInvalidCreds))
-            .expect(401, { error: `Unauthorized request` });
+            .expect(401, { error: 'Unauthorized request' });
         });
 
-        it(`responds 401 'Unauthorized request' when invalid password`, () => {
+        it('responds 401 \'Unauthorized request\' when invalid password', () => {
           const userInvalidPass = {
             user_name: testUsers[0].user_name,
             password: 'wrong'
@@ -76,15 +80,15 @@ describe('Articles Endpoints', function() {
           return supertest(app)
             .get(endpoint.path)
             .set('Authorization', helpers.makeAuthHeader(userInvalidPass))
-            .expect(401, { error: `Unauthorized request` });
+            .expect(401, { error: 'Unauthorized request' });
         });
       });
     });
   });
 
-  describe(`GET /api/articles`, () => {
-    context(`Given no articles`, () => {
-      it(`responds with 200 and an empty list`, () => {
+  describe('GET /api/articles', () => {
+    context('Given no articles', () => {
+      it('responds with 200 and an empty list', () => {
         return supertest(app)
           .get('/api/articles')
           .expect(200, []);
@@ -106,7 +110,7 @@ describe('Articles Endpoints', function() {
       });
     });
 
-    context(`Given an XSS attack article`, () => {
+    context('Given an XSS attack article', () => {
       const testUser = helpers.makeUsersArray()[1];
       const {
         maliciousArticle,
@@ -119,7 +123,7 @@ describe('Articles Endpoints', function() {
 
       it('removes XSS attack content', () => {
         return supertest(app)
-          .get(`/api/articles`)
+          .get('/api/articles')
           .expect(200)
           .expect(res => {
             expect(res.body[0].title).to.eql(expectedArticle.title);
@@ -129,16 +133,15 @@ describe('Articles Endpoints', function() {
     });
   });
 
-  describe(`GET /api/articles/:article_id`, () => {
-    context(`Given no articles`, () => {
-      beforeEach(() => db.into('blogful_users').insert(testUsers));
-
-      it(`responds with 404`, () => {
+  describe('GET /api/articles/:article_id', () => {
+    context('Given no articles', () => {
+      beforeEach(() => helpers.seedUsers(db, testUsers));
+      it('responds with 404', () => {
         const articleId = 123456;
         return supertest(app)
           .get(`/api/articles/${articleId}`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-          .expect(404, { error: `Article doesn't exist` });
+          .expect(404, { error: 'Article doesn\'t exist' });
       });
     });
 
@@ -162,7 +165,7 @@ describe('Articles Endpoints', function() {
       });
     });
 
-    context(`Given an XSS attack article`, () => {
+    context('Given an XSS attack article', () => {
       const testUser = helpers.makeUsersArray()[1];
       const {
         maliciousArticle,
@@ -186,16 +189,16 @@ describe('Articles Endpoints', function() {
     });
   });
 
-  describe(`GET /api/articles/:article_id/comments`, () => {
-    context(`Given no articles`, () => {
-      beforeEach(() => db.into('blogful_users').insert(testUsers));
+  describe('GET /api/articles/:article_id/comments', () => {
+    context('Given no articles', () => {
+      beforeEach(() => helpers.seedUsers(db, testUsers));
 
-      it(`responds with 404`, () => {
+      it('responds with 404', () => {
         const articleId = 123456;
         return supertest(app)
           .get(`/api/articles/${articleId}/comments`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-          .expect(404, { error: `Article doesn't exist` });
+          .expect(404, { error: 'Article doesn\'t exist' });
       });
     });
 

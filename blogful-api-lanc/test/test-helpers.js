@@ -1,3 +1,7 @@
+'use strict'; 
+
+const bcrypt = require('bcryptjs'); 
+
 function makeUsersArray() {
   return [
     {
@@ -184,13 +188,13 @@ function makeMaliciousArticle(user) {
     date_created: new Date().toISOString(),
     title: 'Naughty naughty very naughty <script>alert("xss");</script>',
     author_id: user.id,
-    content: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`
+    content: 'Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.'
   };
   const expectedArticle = {
     ...makeExpectedArticle([user], maliciousArticle),
     title:
       'Naughty naughty very naughty &lt;script&gt;alert("xss");&lt;/script&gt;',
-    content: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`
+    content: 'Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.'
   };
   return {
     maliciousArticle,
@@ -215,10 +219,18 @@ function cleanTables(db) {
   );
 }
 
-function seedArticlesTables(db, users, articles, comments = []) {
+function seedUsers(db, users) {
+  const preppedUsers = users.map(user => ({
+    ...user,
+    password: bcrypt.hashSync(user.password, 1)
+  }));
   return db
     .into('blogful_users')
-    .insert(users)
+    .insert(preppedUsers);
+}
+
+function seedArticlesTables(db, users, articles, comments = []) {
+  return seedUsers(db, users)
     .then(() => db.into('blogful_articles').insert(articles))
     .then(
       () => comments.length && db.into('blogful_comments').insert(comments)
@@ -226,9 +238,7 @@ function seedArticlesTables(db, users, articles, comments = []) {
 }
 
 function seedMaliciousArticle(db, user, article) {
-  return db
-    .into('blogful_users')
-    .insert([user])
+  return seedUsers(db, [user])
     .then(() => db.into('blogful_articles').insert([article]));
 }
 
@@ -251,5 +261,6 @@ module.exports = {
   cleanTables,
   seedArticlesTables,
   seedMaliciousArticle,
-  makeAuthHeader
+  makeAuthHeader,
+  seedUsers
 };
